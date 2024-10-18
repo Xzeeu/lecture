@@ -4,6 +4,8 @@
 #include <vector>
 #include <forward_list>
 #include <list>
+#include <sstream>
+#include <string>
 
 
 using namespace std;
@@ -589,8 +591,33 @@ wcout << L"-----------------------------------------------------ЛЕКЦИЯ4---
 
     str1.append(str2);
 
+    //Получение адреса первого элемента
 
-    cout << str1;
+    const char* p_str1 = str1.c_str();
+
+
+    cout << p_str1 << endl;
+
+    cout << str1 << endl;
+
+    //"Широкие" строки
+    wstring str3;
+
+
+    //ПОТОКОВЫЙ ВЫВОД В СТРОКИ   <sstream>
+
+
+    stringstream out1;
+
+    out1 << "My stringstreame" << endl;
+    out1 << "Integer: " << 10 << endl;
+
+
+    string str4 = out1.str();
+
+    cout << str4 << endl;
+
+
 
 
 
