@@ -6,6 +6,7 @@
 #include <list>
 #include <sstream>
 #include <string>
+#include <fstream>
 
 
 using namespace std;
@@ -24,6 +25,7 @@ int sum_p(const int *pv1, const int *pv2)
     return *pv1 + *pv2; //правильно
 }
 
+using namespace std;
 
 int sum_r(const int &rv1, const int &rv2)
 {
@@ -577,10 +579,13 @@ wcout << L"-----------------------------------------------------ЛЕКЦИЯ4---
 
     */
 
+
+/*
+* */
     //АЛЬТЕРНАТИВЫ СТРОКАМ В СТИЛЕ С
 
     //string, wstring
-
+/*
     string str1; // пустая строка
 
     string str2("Hello!");
@@ -602,10 +607,14 @@ wcout << L"-----------------------------------------------------ЛЕКЦИЯ4---
 
     //"Широкие" строки
     wstring str3;
+    */
+
+    
 
 
     //ПОТОКОВЫЙ ВЫВОД В СТРОКИ   <sstream>
 
+/*
 
     stringstream out1;
 
@@ -617,8 +626,152 @@ wcout << L"-----------------------------------------------------ЛЕКЦИЯ4---
 
     cout << str4 << endl;
 
+    wstringstream out2;
+    out2 << L"Привет" << endl;
+
+    wcout << out2.str(); */
+
+    
 
 
+
+    // РАБОТА С ФАЙЛАМИ <fstreame>
+
+
+
+    ifstream in; // поток чтения
+    ofstream out; 
+
+    //открытие файла
+
+    in.open("text.txt");
+    //in.open("D:\\development\\c++\\lecture\\text.txt");
+
+        if (in.is_open())
+        {
+            //файл открылся
+            /*
+            cout << "open OK" << endl;
+            string str1;
+
+            in >> str1;
+            cout << str1 << endl;
+
+            in >> str1;
+            cout << str1 << endl; */
+            
+
+            char str2[100];
+            in.getline(str2, sizeof(str2), ' '); // sizeof(str2) = 100
+
+            cout << str2 << endl;
+
+            /*
+            //чтение по одному символу до конца файла
+            while (!in.eof())
+            {
+                char c;
+                in.get(c); //чтение символа
+
+                cout.put(c); //запись символа
+
+            } */
+                
+
+        }
+
+
+        cout << endl;
+
+
+        wifstream in2(L"text2.txt");
+
+        if (in2.is_open())
+        {
+            int intArray[100];
+            size_t arraySize = 0;
+
+
+            while (!in2.eof())
+            {
+                in2 >> intArray[arraySize]; arraySize++;
+
+            }
+
+            for (size_t i = 0; i < arraySize; i++)
+            {
+                cout << intArray[i] << endl;
+
+            }
+
+            //in2 >> intArray[0] >> intArray[1];
+        }
+
+        /*
+        //Вывод в файл
+
+        out.open(L"текст.txt");
+
+        if (out.is_open())
+        {
+            out << "Текстовая информация" << endl;
+            out << "Вторая строка" << endl;
+
+        }
+
+        //ВВОД-ВЫВОД ДВОИЧНЫХ ДАННЫХ
+
+        
+
+        ifstream in_binary1("gg.jpg", ios::binary); //  ..., флаг режима вывода ios ::  app - если нужно дополнять файл ofstream
+
+
+            if (in_binary1.is_open())
+            {
+                //определение размера файла
+                in_binary1.seekg(0, ios_base::end); //перешли к концу файла
+                size_t fileSize = in_binary1.tellg();
+                cout << "file size: " << fileSize << endl;
+
+                //выделить память
+                vector<char> filedata(fileSize);
+
+                // Перейти к началу файла
+
+                in_binary1.seekg(0, ios_base::beg);
+
+                //считать данные
+
+                in_binary1.read(filedata.data(), 10);
+
+                for (auto c : filedata)
+                {
+                    cout.put(c);
+                }
+
+                ofstream out_binary("out.jpg", ios :: binary);
+                out_binary.write(filedata.data(), fileSize);
+
+            } */
+
+
+        int* myArray = new int[100]; //динамическое выделение памяти для массива
+
+        //int* myArray;
+        myArray = new int[100];
+
+        int* myArray2 = nullptr; //новые компиляторы
+        int* myArray3 = NULL; //Работает всегда
+
+        int a = myArray[0];; //первый элемент массива
+        int b = myArray[99];; //последний элемент массива
+
+
+        cout << myArray2[0] << endl;
+
+
+
+        delete[] myArray; 
 
 
 

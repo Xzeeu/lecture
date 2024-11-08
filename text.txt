@@ -1,0 +1,2 @@
+it s a text file
+Second string
